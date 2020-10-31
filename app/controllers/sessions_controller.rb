@@ -1,23 +1,18 @@
 class SessionsController < ApplicationController
   
-  def home
-
-  end
-  
-  def new
-
-  end
 
   def create
-    user = User.find_by(email: params[:user][:email])
-    if user && user.authenticate(params[:user][:password])
-      session[:user_id] = user.id 
-      redirect_to user_path(user)
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      log_in(user)
+      flash[:success] = "Successful login"
+      redirect_to user_path
     else
-      flash[:message] = "Incorrect information, please try again!"
-      redirect_to '/login'
+      flash[:danger] = "Invalid Credentials Given"
+      render :new
     end
   end
+
 
   def destroy
     session.clear
