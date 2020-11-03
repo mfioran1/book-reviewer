@@ -7,6 +7,25 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <style>
+      body {
+       background-color: #E8E8E8;
+      }
+    </style>
+
+    <div>
+      <% if logged_in? %>
+      <%= link_to "Create a new Book", new_book_path %> | 
+      <%= link_to "All Books", books_path %> |
+      <%= link_to "Logout", logout_path, method: "delete" %>
+      <% else %>
+      <%= link_to "Sign up", signup_path %> |
+      <%= link_to "Log In", login_path %>
+      <% end %>
+
   </head>
 
   <body>

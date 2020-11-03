@@ -2,13 +2,12 @@ class SessionsController < ApplicationController
   
 
   def create
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      log_in(user)
-      flash[:success] = "Successful login"
-      redirect_to user_path
+    user = User.find_by(username: params[:user][:username])
+    if user && user.authenticate(params[:user][:password])
+      session[:user_id] = user.id
+      redirect_to user_path(user)
     else
-      flash[:danger] = "Invalid Credentials Given"
+      flash[:message] = "Invalid Credentials Given"
       render :new
     end
   end
@@ -19,3 +18,4 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 end
+

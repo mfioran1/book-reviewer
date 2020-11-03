@@ -1,0 +1,22 @@
+<%= form_for book do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br>
+    <br>
+
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+    <br>
+    <br>
+
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <br>
+    <br>
+
+    <%= f.label :year_published %>
+    <%= f.number_field :year_published %>
+    <br>
+    <br>
+    <%= f.submit "Create Book" %>
+<% end %>
