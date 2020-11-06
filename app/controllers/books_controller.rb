@@ -38,6 +38,18 @@ class BooksController < ApplicationController
         end
     end
 
+    def destroy
+        @book = Book.find_by_id(params[:id])
+        if @book.destroy
+            flash[:message] = "#{@book.title} was successfully deleted"
+            redirect_to books_path
+        else
+            flash[:message] = "#{@book.title} was not able to be deleted" 
+            redirect_to book_path(@book)
+        end
+    end
+    
+
 
 
     private

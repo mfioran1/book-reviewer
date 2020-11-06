@@ -6,6 +6,8 @@
     <tr>
         <h4><td><%= link_to book.title, book %></td> -
         <td>Author: <%= book.author %></td> -
-        <td>Year published: <%= book.year_published %></td> 
+        <td>Year published: <%= book.year_published %></td> -
+        <td><%= link_to "Delete?", book_path(book), method: :delete, data: { confirm: "Are you sure?"} %>
+        
     </tr>
 <% end %>        
