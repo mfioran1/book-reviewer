@@ -14,6 +14,25 @@ class ReviewsController < ApplicationController
 
     end
 
+    def create
+        @book = Book.find(params[:review][:book_id])
+        @review = current_user.reviews.new(review_params)
+        if @review.save
+            redirect_to book_reviews_path(@book)
+        else
+            render :new
+        end
+    end
+
+    def index 
+        if params[:book_id]
+            @book = Book.find(params[:book_id])
+            @reviews = @book.reviews
+        else
+            @user = User.find(params[:user_id])
+            @reviews = @user.reviews
+        end
+
 
 
 
