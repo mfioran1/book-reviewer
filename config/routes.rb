@@ -11,10 +11,19 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
   
+  resources :books do
+    resources :reviews, except: [:show, :create, :update]
+  end
+
+  resources :users do
+    resources :reviews, only: [:index]
+  end
+
+  
+
   
   resources :catalogs
-  resources :reviews
-  resources :users
-  resources :books
+  resources :reviews, only: [:create, :update]
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

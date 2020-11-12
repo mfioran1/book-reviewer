@@ -1,0 +1,15 @@
+<%= render 'errors/error', model: @review %>
+
+<%= form_for review do |f| %>
+    <%= f.hidden_field :book_id %>
+
+    <%= f.label :rating %>
+    <%= f.number_field :rating, :in => 1..10 %>
+    <br/>
+    <br/>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <br/>
+    <br/>
+    <%= f.submit %>
+<% end %>

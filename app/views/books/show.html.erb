@@ -7,5 +7,10 @@
 
 <h5>Something not right? <%= link_to "Edit details here", edit_book_path(@book) %></h5>
 <%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?"} %>
+<br/>
+<br/>
+<p>Want to leave a review? Submit a review for <%= link_to @book.title, new_book_review_path(@book) %></p>
+<p><%= link_to "See all reviews", book_reviews_path(@book) %></p>
+
 
 
