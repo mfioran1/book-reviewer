@@ -23,7 +23,28 @@ class CatalogsController < ApplicationController
     def show
 
     end
-    
+
+    def edit
+        
+
+    end
+
+    def update
+        @catalog.update(catalog_params)
+        if @catalog.save
+            redirect_to @catalog
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @catalog.destroy
+        flash[:message] = "#{@catalog.name} was successfully deleted"
+        redirect_to catalogs_path
+    end
+
+
 
     
 

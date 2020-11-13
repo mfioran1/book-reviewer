@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
     before_action :redirect_if_not_logged_in
+    before_action :set_book, only: [:show, :edit, :update, :destroy]
 
     def new
         @book = Book.new
@@ -16,7 +17,6 @@ class BooksController < ApplicationController
     end
 
     def show
-        @book = Book.find_by(id: params[:id])
 
     end
 
@@ -25,11 +25,9 @@ class BooksController < ApplicationController
     end
 
     def edit
-        @book = Book.find_by_id(params[:id])
     end
     
     def update 
-        @book = Book.find_by_id(params[:id])
         @book.update(book_params)
         if @book.save
             flash[:message] = "#{@book.title} has been updated"
@@ -40,7 +38,6 @@ class BooksController < ApplicationController
     end
 
     def destroy
-        @book = Book.find_by_id(params[:id])
         if @book.destroy
             flash[:message] = "#{@book.title} was successfully deleted"
             redirect_to books_path
@@ -57,6 +54,10 @@ class BooksController < ApplicationController
 
     def book_params
         params.require(:book).permit(:title, :author, :description, :year_published)
+    end
+
+    def set_book
+        @book = Book.find(id: params[:id])
     end
 
 

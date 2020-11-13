@@ -1,0 +1,6 @@
+<h1>Editing your catalog: <%= @ catalog.name %></h1>
+
+<%= render 'form', catalog: @catalog %>
+
+<p><%= button_to "Delete Catalog", @catalog, method: :delete, data: {confirm: Are you sure?}</p>
+<p><%= link_to "Return to Catalog", catalog_path(@catalog) %></p>

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
     helper_method :logged_in?
     helper_method :review_creator
-    
+    helper_method :message
     
       def log_in(user)
         session[:user_id] = user.id
@@ -22,5 +22,9 @@ class ApplicationController < ActionController::Base
 
       def review_creator(created)
         created.user == current_user
+      end
+
+      def message
+        flash[:message] if flash[:message]
       end
 end
