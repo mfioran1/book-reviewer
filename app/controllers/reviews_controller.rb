@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
     before_action :redirect_if_not_logged_in
-    before_action :get_review, only: [:update]
+    before_action :set_review, only: [:update, :destroy]
 
 
     def new
@@ -32,7 +32,34 @@ class ReviewsController < ApplicationController
             @user = User.find(params[:user_id])
             @reviews = @user.reviews
         end
+    end
 
+    def edit
+        book = Book.find_by(id: params[:book_id])
+        @review = book.reviews.find_by(id: params[:id])
+        if @review.nil?
+            redirect_to book_reviews_path(book)
+        else
+            @book = @review.book
+        end
+    end
+
+    def update
+        @review.update(review_params)
+        if @review.save 
+            redirect_to book_reviews_path(@review)
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        if @review
+            @review.destroy
+            flash[:message] = "The Review has been successfully deleted."
+            redirect_to book_reviews_path
+        end
+    end
 
 
 
@@ -44,7 +71,7 @@ class ReviewsController < ApplicationController
 
     private
 
-    def get_review
+    def set_review
         @review = Review.find(params[:id])
     end
 

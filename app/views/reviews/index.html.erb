@@ -1,0 +1,27 @@
+
+<% if @book %>
+    <h1>See all reviews for: <%= link_to @book.title, book_path(@book) %> by <%= @book.author %></h1>
+
+    <% if @book.reviews.empty? %>
+    <h2>There are currently no reviews made for this book yet! <%= button_to "Add a review", new_book_review_path %>
+    <% end %>
+<% else %>
+    <h2>Reviews by: <%= @user.username %></h2>
+<% end %>
+
+
+    <% @reviews.each do |review| %>
+        <h4><%= review.rating %>/10</h4>
+        <p><%= review.content %></p>
+        <% if review_creator(review) && @book %>
+            <%= link_to "Edit Review", edit_book_review_path(@book, review) %>
+            <%= button_to "Delete review", book_review_path(@book, @review), method: :delete, data: {confirm: "Are you sure?"} %>
+
+        <% end %>
+
+        <% if @book %>
+            <h5>Reviewed by: <%= link_to review.user.username, user_reviews_path(review.user) %></h5>
+        <% else %>
+            <h5>Book: <%= link_to review.book.title, book_path(review.book) %></h5>
+        <% end %>
+    <% end %>

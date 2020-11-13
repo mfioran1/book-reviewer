@@ -1,0 +1,9 @@
+<h1><%= current_user.username %>'s Catalogs</h1>
+
+<% if @catalogs.empty? %>
+    <p>You currently do not have any catalogs created: <%= link_to "Make a new catalog", new_catalog_path %></p>
+<% else %>
+    <% @catalogs.each do |catalog| %>
+        <h3><%= link_to catalog.name, catalog_path(catalog) %></h3>
+        <p><%= link_to "Make a new catalog", new_catalog_path %></p>
+<% end %>        
