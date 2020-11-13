@@ -1,4 +1,4 @@
-<%= form_for list do |f| %>
+<%= form_for catalog do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <br>
@@ -7,7 +7,9 @@
     <%= f.text_area :description %>
     <br>
     <br>
-    <%= f.collection_check_boxes :book_ids, catalog.books, :id, :title %>
+    <%= f.collection_check_boxes :book_ids, Book.all, :id, :title do |box|%>
+        <%= box.check_box %><%= box.label {box.text} %>
+    <% end %>
     <br>
     <br>
     <%= f.submit %>

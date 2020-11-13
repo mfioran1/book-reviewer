@@ -2,13 +2,28 @@ class CatalogsController < ApplicationController
     before_action :redirect_if_not_logged_in
     before_action :set_catalog, only: [:show, :edit, :update, :destroy]
 
+    
+    def index
+        @catalogs = current_user.catalogs
+    end
+
     def new
         @catalog = Catalog.new
     end
 
-    def index
-        @catalogs = current_user.catalogs
+    def create
+        @catalog = current_user.catalogs.new(catalog_params)
+        if @catalog.save
+            redirect_to @catalog
+        else
+            render :new
+        end
     end
+
+    def show
+
+    end
+    
 
     
 

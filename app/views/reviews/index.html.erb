@@ -15,7 +15,6 @@
         <p><%= review.content %></p>
         <% if review_creator(review) && @book %>
             <%= link_to "Edit Review", edit_book_review_path(@book, review) %>
-            <%= button_to "Delete review", book_review_path(@book, @review), method: :delete, data: {confirm: "Are you sure?"} %>
 
         <% end %>
 

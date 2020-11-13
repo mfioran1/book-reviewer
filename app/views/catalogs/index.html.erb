@@ -6,4 +6,5 @@
     <% @catalogs.each do |catalog| %>
         <h3><%= link_to catalog.name, catalog_path(catalog) %></h3>
         <p><%= link_to "Make a new catalog", new_catalog_path %></p>
-<% end %>        
+    <% end %> 
+<% end %>              
