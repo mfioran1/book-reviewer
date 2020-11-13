@@ -1,3 +1,13 @@
 <h1><%= @catalog.name %></h1>
 
-<p><%= @catalog
+<p><%= @catalog.description %></p>
+
+<%= @catalog.books.each do |book| %>
+    <p>Book Title: <%= link_to book.title, book %> -
+    Author: <%= book.author %> -
+    Year Published: <%= book.year_published %></p>
+    <% end %>
+<br>
+<br>
+<%= button_to "Edit Catalog", edit_catalog_path(@catalog) %>
+<%= button_to "Delete Catalog", @catalog, method: :delete, data: {confirm: "Are you sure?"} %>
