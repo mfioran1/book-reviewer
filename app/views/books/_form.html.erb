@@ -1,5 +1,7 @@
-<%= message %>
+<%= render 'errors/error', model: @book %>
 
+
+<%= message %>
 
 <%= form_for book do |f| %>
     <%= f.label :title %>
