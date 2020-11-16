@@ -8,4 +8,6 @@ class Book < ApplicationRecord
     validates :title, presence: true, uniqueness: true 
     validates :author, presence: true
 
+    scope :highest_ranked, -> {joins(:reviews).group("books.id").order("AVG(reviews.rating)  DESC").limit(10)}
+
 end

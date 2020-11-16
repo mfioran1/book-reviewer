@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
+
+  get '/auth/github/callback' => 'sessions#github_create'
+
   
   resources :books do
     resources :reviews, except: [:show, :create, :update]

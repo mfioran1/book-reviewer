@@ -1,0 +1,6 @@
+<h1>Highest ranked books on book reviewer!</h1>
+
+
+<% @books.each do |book| %>
+    <%= link_to book.title, book %> - Average Rating: <%= average_rating(book) %> with <%= review_count(book) %> review(s).</li>
+  <% end %>
