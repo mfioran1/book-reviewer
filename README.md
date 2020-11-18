@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Book Reviewer Rails Project
 
-Things you may want to cover:
+This rails app provides a way that users can keep track of books that they have read and write reviews for them. They can also see reviews done by other users. The users can also create catalogs to keep a list of books in order to organize them for their own benefit.
 
-* Ruby version
+## Begin Application
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To get everything started:
+- Clone the repo<br>
+- Run bundle install<br>
+- Run rails db:migrate<br>
+- Also run rails db:seed to get a pre done log in info and some data to work with<br>
+- Then run rails s in your terminal, open your browser and go to site "http://localhost:3000"

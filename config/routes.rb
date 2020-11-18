@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   get '/auth/github/callback' => 'sessions#github_create'
 
+  get '/books/highest_ranked' => 'books#highest_ranked', as: :highest_ranked
+
+
   
   resources :books do
     resources :reviews, except: [:show, :create, :update]
