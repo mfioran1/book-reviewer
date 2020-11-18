@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   root 'sessions#home'
 
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
 
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
-  get '/auth/github/callback' => 'sessions#github_create'
+  get 'auth/github/callback', to: "sessions#github_create"
 
   get '/books/highest_ranked' => 'books#highest_ranked', as: :highest_ranked
 

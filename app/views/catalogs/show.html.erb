@@ -2,7 +2,7 @@
 
 <p><%= @catalog.description %></p>
 
-<%= @catalog.books.each do |book| %>
+<% @catalog.books.each do |book| %>
     <p>Book Title: <%= link_to book.title, book %> -
     Author: <%= book.author %> -
     Year Published: <%= book.year_published %></p>

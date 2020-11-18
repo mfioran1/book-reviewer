@@ -14,13 +14,14 @@ class SessionsController < ApplicationController
   end
 
   def github_create
-    user = User.find_or_create_by(username: request.env["omniauth.auth"]["info"]["nickname"])
-    if !user.password
-      user.password = SecureRandom.hex
+    @user = User.find_or_create_by(username: auth["info"]["nickname"])
+    if !@user.password
+      @user.password = SecureRandom.hex
     end
-    user.save
-    log_in(user)
-    redirect_to user_path(user)
+    @user.save
+    log_in(@user)
+    redirect_to user_path(@user)
+  
   end
 
 
@@ -29,4 +30,11 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 end
+
+
+private
+
+  def auth
+    request.env['omniauth.auth']
+  end
 
