@@ -9,5 +9,11 @@ class Book < ApplicationRecord
     validates :author, presence: true
 
     scope :highest_ranked, -> {joins(:reviews).group("books.id").order("AVG(reviews.rating)  DESC").limit(10)}
+    scope :random_book, -> {Book.all.sample}
+
+
+     def random_book
+        self.all.sample
+     end
 
 end
